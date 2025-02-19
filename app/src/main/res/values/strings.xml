@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">latih logic</string>
+    <string name="title_activity_list_item">ListItem</string>
+    <integer-array name="skincare">
+        <item>@drawable/scarlettbody</item>
+        <item>@drawable/scarlet</item>
+        <item>@drawable/corsx</item>
+        <item>@drawable/azarine</item>
+        <item>@drawable/nivea</item>
+    </integer-array>
+    <integer-array name="Harga">
+        <item>600000</item>
+        <item>900000</item>
+        <item>2000000</item>
+        <item>55000</item>
+        <item>35000</item>
+    </integer-array>
+    <string-array name="produk">
+        <item>Scarlet Body 200Ml dengan AHA </item>
+        <item>Scarlet Whitening sabun cuci muka </item>
+        <item>Corsx Toner  </item>
+        <item>Sunscreen Azarine SPF 50 PA++++ </item>
+        <item>Nivea Extrawhite </item>
+    </string-array>
+</resources>
