@@ -1,2 +1,1 @@
-Latih cart make List
-masih blm jadi
+Cart1 58 20 februari
