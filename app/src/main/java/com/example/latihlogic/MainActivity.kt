@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -35,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +50,6 @@ class MainActivity : ComponentActivity() {
         val getName = intent.getStringExtra("NAMA")
         val getPrice = intent.getIntExtra("HARGA",0)
         super.onCreate(savedInstanceState)
-
         setContent {
             LatihLogicTheme {
                 // A surface container using the 'background' color from the theme
@@ -65,6 +66,14 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun PrevApp() {
+        LatihLogicTheme {
+            TesApp(getImg = R.drawable.corsx, getNama = "PlaceHolder" , getHarga = 90000 )
+        }
+    }
 }
 
 @Composable
@@ -72,7 +81,6 @@ fun TesApp(modifier:Modifier = Modifier,getImg:Int,getNama:String?,getHarga:Int)
     var count by remember { mutableStateOf(0) }
     val price by remember { mutableStateOf(getHarga) }
     val total by remember { derivedStateOf { count * price }}
-
 
     Column(modifier.fillMaxSize()) {
         Column(
@@ -100,18 +108,33 @@ fun TesApp(modifier:Modifier = Modifier,getImg:Int,getNama:String?,getHarga:Int)
                 Icon(imageVector = Icons.Default.Delete, contentDescription = "Add",
                     modifier.clickable { if (count > 0){count--} })
             }
-        Column(modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
-            Box(
-                modifier
-                    .width(250.dp)
-                    .background(Color.Gray)
-                    .padding(bottom = 70.dp, start = 20.dp, top = 20.dp)){
-              Column {
-                  Text(text = "Totalnya", color = Color.White)
-                  Spacer(modifier = Modifier.height(15.dp))
-                  Text(text = total.toString(), color = Color.White, fontSize = 25.sp)
-              }
-            }
-        }
+
+           Row(modifier.fillMaxSize(), verticalAlignment = Alignment.Bottom) {
+               Box(
+                   modifier
+                       .width(250.dp)
+                       .background(Color.Gray)
+                       .padding(bottom = 70.dp, start = 20.dp, top = 20.dp)){
+                   Column {
+                       Text(text = "Totalnya", color = Color.White)
+                       Spacer(modifier = Modifier.height(15.dp))
+                       Text(text = total.toString(), color = Color.White, fontSize = 25.sp)
+                   }
+               }
+               Column(
+                   modifier
+                       .fillMaxWidth()
+                       .background(Color.Gray)
+                       .height(160.dp),
+                   horizontalAlignment = Alignment.CenterHorizontally,
+                   verticalArrangement = Arrangement.Center
+                   ){
+                    Icon(imageVector = Icons.Filled.ShoppingCart,
+                        contentDescription = "Tambah",
+                        tint = Color.White,
+                        modifier = Modifier.size(60.dp))
+               }
+           }
+
     }
 }
